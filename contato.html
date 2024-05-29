@@ -164,20 +164,24 @@
 
     fetch('https://script.google.com/macros/s/AKfycbwUjvxZKIT2s73vG6SRErvfGJ0HFJHcRjklE0Ho07xq2LmdBBQjYrFQRb139RR4ogo3eA/exec', {
       method: 'POST',
-      mode: 'cors',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       },
-      body: new URLSearchParams(data)
+      body: JSON.stringify(data)
     })
-    .then(response => response.text())
-    .then(text => {
-      alert(text);
-      if (text === 'Success') {
+    .then(response => response.json())
+    .then(response => {
+      if (response.result === 'success') {
+        alert('Mensagem enviada com sucesso!');
         event.target.reset();
+      } else {
+        alert('Erro ao enviar mensagem.');
       }
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+      console.error('Erro:', error);
+      alert('Erro ao enviar mensagem.');
+    });
   });
 </script>
 
