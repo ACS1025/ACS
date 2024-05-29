@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fale comigo</title>
+  <style>
+    /* Estilos para o formulário flutuante */
+    .floating-form {
+      display: none;
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      z-index: 9998;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .header {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .header-text {
+      font-size: 18px;
+      margin-bottom: 10px;
+      background-color: #ffffff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+      float: left;
+    }
+
+    /* Estilos para o botão flutuante do WhatsApp */
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+
+    /* Estilos para os campos de preenchimento */
+    .form-fields {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos para os campos de entrada */
+    .bricks-form__input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+
+    .bricks-form__input:focus {
+      outline: none;
+      border-color: #4CAF50;
+    }
+
+    /* Estilos para os botões */
+    .bricks--component-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .bricks--component-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Botão flutuante do WhatsApp -->
+<a href="#" class="whatsapp-button">
+  <img src="src/icon/img/wapp.png" alt="WhatsApp Icon" width="50">
+</a>
+
+<!-- Formulário flutuante -->
+<div class="floating-form">
+  <div class="header">
+    <img src="src/icon/img/ACS_logo.ico" alt="Profile Icon" class="profile-icon">
+    <div class="header-text">
+      <p>Olá! Estou aqui para te ouvir, fale-me da sua necessidade</p> 
+      <p>Entre em contato!</p>
+    </div>
+  </div>
+  <div class="form-fields">
+    <form id="whatsapp-form">
+      <div class="bricks-form__field " data-step="1">
+        <label for="rd-text_field-li24lg07" class="bricks-form__label">Nome*</label>
+        <input id="rd-text_field-li24lg07" class="bricks-form__input required js-text js-field-name" name="name" type="text" data-use-type="STRING" placeholder="Nome *" required="required">
+      </div>
+      <div class="bricks-form__field " data-step="1">
+        <label for="rd-email_field-li24lg08" class="bricks-form__label">Email*</label>
+        <input id="rd-email_field-li24lg08" class="bricks-form__input required js-email js-field-email" name="email" type="email" data-use-type="STRING" data-always-visible="true" data-input-mask="" placeholder="Email *" required="required">
+      </div>
+      <div class="bricks-form__field" data-step="1">
+        <label for="phone_field" class="bricks-form__label">Telefone*</label>
+        <input id="phone_field" class="bricks-form__input required phone js-phone js-field-personal_phone" name="personal_phone" data-input-mask="INTERNATIONAL_MASK" data-use-type="STRING" type="tel" placeholder="Telefone *" required="required" data-country="BR" data-last-country-code="55">
+      </div>
+      <div class="bricks-form__field" data-step="1">
+        <label for="company" class="bricks-form__label">Empresa*</label>
+        <input id="company" class="bricks-form__input required js-text js-field-company" name="company" type="text" data-use-type="" placeholder="Empresa *" required="required">
+      </div>
+      <div class="bricks-form__field" data-step="1">
+        <label for="job_title" class="bricks-form__label">Seu cargo*</label>
+        <select id="job_title" class="bricks-form__input required js-field-cf_seu_cargo_hierarquico" data-use-type="STRING" name="cf_seu_cargo_hierarquico" required="required">
+          <option value="">Selecione</option>
+          <option value="Diretor">Diretor</option>
+          <option value="Gerente">Gerente</option>
+          <option value="Coordenador / Supervisor">Coordenador / Supervisor</option>
+          <option value="Analista">Analista</option>
+          <option value="CEO / Presidente">CEO / Presidente</option>
+          <option value="Proprietário / Dono">Proprietário / Dono</option>
+          <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
+          <option value="Motorista">Motorista</option>
+          <option value="Outro">Outro</option>
+          <option value="Estagiário / Estudante">Estagiário / Estudante</option>
+          <option value="Em busca de oportunidade">Em busca de oportunidade</option>
+        </select>
+      </div>
+      <div class="bricks-form__submit">
+        <button class="bricks--component bricks--component-button rdstation-popup-js-submit-button rd-button" id="start-conversation" type="submit">Iniciar conversa</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById('whatsapp-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      personal_phone: formData.get('personal_phone'),
+      company: formData.get('company'),
+      cf_seu_cargo_hierarquico: formData.get('cf_seu_cargo_hierarquico')
+    };
+
+    fetch('https://script.google.com/macros/s/1MhWNrOnjABeAWDAZoMcO7idhCcRHRLDAwWYb4l-31QA2M5HA4PP6cAQY', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: new URLSearchParams(data)
+    })
+    .then(response => response.text())
+    .then(text => {
+      alert(text);
+      if (text === 'Success') {
+        event.target.reset();
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  });
+</script>
+
+</body>
+</html>

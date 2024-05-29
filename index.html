@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACS Consult</title>
+    <link rel="icon" href="./src/imagens/favicon-32x32.png" type="image/favicom-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/estilos.css">
+    <link rel="stylesheet" href="./src/css/responsivo.css">
+
+    <style>
+        .home {
+            background-image: url('./src/imagens/ACS0.1.svg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Estilos para o formulário flutuante */
+        .floating-form {
+            display: none;
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            z-index: 9998;
+            background-color: rgba(0, 0, 0, 0); /* Fundo transparente */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-text {
+            flex: 1; /* Ocupa o espaço restante */
+        }
+
+        .profile-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 0;
+            margin-right: 0;
+        }
+
+        /* Estilos para o botão flutuante do WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .black-text {
+            color: #000000; /* Cor preta */
+        }
+
+        /* Estilos para os campos de preenchimento */
+        .form-fields {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para os campos de entrada */
+        .bricks-form__input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .bricks-form__input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        /* Estilos para os botões */
+        .bricks--component-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .bricks--component-button:hover {
+            background-color: #45a049;
+        }
+        .foto.sombra-interna img {
+            max-width: 100%; /* Define a largura máxima da imagem */
+            border: 1px solid #ccc; /* Adiciona uma borda à imagem */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adiciona um efeito de sombra à imagem */
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="#">
+            <h1 class="logo">ACS</h1>
+        </a>
+
+        <nav class="menu" id="menu">
+            <div class="hamburguer-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="menu-items">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre mim</a></li>
+                <li><a href="projetos.html">Meus projetos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="home">
+        <div class="informacoes">
+            <h1>"Transformando ideias em realidade: impulsionando sua visão com expertise e gestão." </h1>
+            <h3>Seu sucesso é resultado do seu esforço; estou aqui para destacá-lo para que o mundo o reconheça.</h3>
+            <p>- Ana C. Souza</p>
+
+            <ul class="redes-sociais">
+                <li>
+                    <a href="https://www.linkedin.com/in/bibomkt/" title="Ir para o LinkedIn" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </li>
+                    
+                <li>
+                    <a href="https://wa.me/5511996232846" title="Enviar Mensagem no WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/ACS1025" title="Ir para o GitHub" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.instagram.com/acs_consult/" title="Ir para o Instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="container-foto">
+            <div class="foto sombra-interna" id="imagem-container">
+                <img src="src/imagens/ACSDourado_logo.png" width="640" height="440" alt="ACSDourado Logo">
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Formulário flutuante do WhatsApp -->
+    <div class="whatsapp-form">
+        <a href="https://wa.me/5511996232846" title="Enviar Mensagem no WhatsApp" target="_blank">
+            <i class="fab fa-whatsapp"></i> Entrar em contato
+        </a>
+    </div>
+          
+    <script src="./src/script.js"></script>
+
+    <!-- Botão flutuante do WhatsApp -->
+    <a href="#" class="whatsapp-button">
+        <img src="src/imagens/wapp.png" alt="WhatsApp Icon" width="50">
+    </a>
+
+    <!-- Formulário flutuante -->
+    <div class="floating-form">
+        <div class="header">
+            <img src="src/imagens/favicon-32x32.png" alt="Profile Icon" class="profile-icon">
+            <div class="header-text black-text">
+                <p>Olá! Fale-me da sua necessidade</p>
+            </div>
+        </div>
+        <div class="form-fields">
+            <form id="whatsapp-form">
+    <div class="bricks-form__field " data-step="1">
+        <label for="rd-text_field-li24lg07" class="bricks-form__label">Nome*</label>
+        <input id="rd-text_field-li24lg07" class="bricks-form__input required js-text js-field-name" name="Nome" type="text" data-use-type="STRING" placeholder="Nome *" required="required">
+    </div>
+    <div class="bricks-form__field " data-step="1">
+        <label for="rd-email_field-li24lg08" class="bricks-form__label">Email*</label>
+        <input id="rd-email_field-li24lg08" class="bricks-form__input required js-email js-field-email" name="Email" type="email" data-use-type="STRING" data-always-visible="true" data-input-mask="" placeholder="Email *" required="required">
+    </div>
+    <div class="bricks-form__field" data-step="1">
+        <label for="phone_field" class="bricks-form__label">Telefone*</label>
+        <input id="phone_field" class="bricks-form__input required phone js-phone js-field-personal_phone" name="Telefone" data-input-mask="INTERNATIONAL_MASK" data-use-type="STRING" type="tel" placeholder="Telefone *" required="required" data-country="BR" data-last-country-code="55">
+    </div>
+    <div class="bricks-form__field" data-step="1">
+        <label for="company" class="bricks-form__label">Empresa*</label>
+        <input id="company" class="bricks-form__input required js-text js-field-company" name="Empresa" type="text" data-use-type="" placeholder="Empresa *" required="required">
+    </div>
+    <div class="bricks-form__field" data-step="1">
+        <label for="job_title" class="bricks-form__label">Seu cargo*</label>
+        <select id="job_title" class="bricks-form__input required js-field-cf_seu_cargo_hierarquico" data-use-type="STRING" name="Cargo" required="required">
+            <option value="">Selecione</option>
+            <option value="Diretor">Diretor</option>
+            <option value="Gerente">Gerente</option>
+            <option value="Coordenador / Supervisor">Coordenador / Supervisor</option>
+            <option value="Analista">Analista</option>
+            <option value="CEO / Presidente">CEO / Presidente</option>
+            <option value="Proprietário / Dono">Proprietário / Dono</option>
+            <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
+            <option value="Motorista">Motorista</option>
+            <option value="Outro">Outro</option>
+            <option value="Estagiário / Estudante">Estagiário / Estudante</option>
+            <option value="Em busca de oportunidade">Em busca de oportunidade</option>
+        </select>
+    </div>
+                <div class="bricks-form__submit">
+                     <button class="bricks--component bricks--component-button rdstation-popup-js-submit-button rd-button" id="start-conversation">Iniciar conversa</button>
+</form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const whatsappButton = document.querySelector('.whatsapp-button');
+            const floatingForm = document.querySelector('.floating-form');
+            const form = document.getElementById('whatsapp-form');
+
+            whatsappButton.addEventListener('click', function () {
+                floatingForm.style.display = 'block';
+            });
+
+            const startConversationButton = document.getElementById('start-conversation');
+
+            startConversationButton.addEventListener('click', function () {
+                floatingForm.style.display = 'none';
+
+                var formData = new FormData(form);
+                fetch('https://script.google.com/macros/library/d/1MhWNrOnjABeAWDAZoMcO7idhCcRHRLDAwWYb4l-31QA2M5HA4PP6cAQY', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+            });
+        });
+
+    </script>
+
+</body>
+</html>

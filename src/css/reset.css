@@ -1,0 +1,24 @@
+/* Reset de estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Estilos para links */
+a {
+    text-decoration: none;
+    color: #fff;  /* Cor padrão para os links */
+}
+
+/* Estilos para listas */
+ul {
+    list-style: none;
+}
+
+/* Estilos para imagens responsivas */
+img {
+    max-width: 100%;  /* Garante que as imagens não ultrapassem a largura do container pai */
+}

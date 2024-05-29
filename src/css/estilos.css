@@ -1,0 +1,221 @@
+html {
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-image: url('../imagens/ACS\ 0.1.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1290px;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 15px;
+}
+
+.cabecalho .logo {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    text-align: center;
+    line-height: 75px;  
+    font-family: "Raleway", sans-serif;
+    transition: 0.2s;
+}
+
+.cabecalho a:hover .logo {
+    color: #67ADC3;
+    border-color: #67ADC3;
+}
+
+.header {
+    display: flex; /* torna o container flexível */
+    align-items: center; /* alinha verticalmente os itens ao centro */
+    background: #FFF; /* cor de fundo do cabeçalho, caso necessário */
+}
+
+.logo {
+    margin-right: 20px; /* espaço à direita do logo para separá-lo do menu */
+}
+
+.menu {
+    display: flex; /* torna o menu um flex container */
+    justify-content: flex-end; /* justifica os itens do menu à direita */
+    background: linear-gradient(to right, #808080, #FFF, #0f2747);
+    padding: 10px 0; /* espaço interno para dar destaque ao menu */
+    flex-grow: 1; /* faz o menu crescer para ocupar o espaço restante */
+}
+
+.menu ul {
+    list-style-type: none; /* remove os marcadores de lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* torna os itens da lista em linha */
+    justify-content: center; /* centraliza os itens horizontalmente */
+}
+
+.menu li {
+    margin: 0 15px; /* espaço entre os itens do menu */
+}
+
+.menu a {
+    text-decoration: none; /* remove sublinhado dos links */
+    color: #000; /* cor do texto */
+    padding: 5px 10px; /* espaço interno para tornar o link clicável */
+    border-radius: 5px; /* bordas arredondadas */
+    transition: background-color 0.3s ease; /* transição suave de cor de fundo */
+}
+
+.menu a:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* cor de fundo ao passar o mouse */
+}
+
+.cabecalho .menu li a {
+    font-size: 20px;
+    text-transform: capitalize;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.cabecalho .menu li a:hover {
+    background-color: #67ADC3;
+    color: #fff;
+    border-radius: 50px;
+}
+
+.home {
+    display: flex;
+    min-height: calc(100vh - 125px);
+    align-items: center;
+    gap: 50px;
+}
+
+.home .informacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    letter-spacing: 2px;
+    padding: 0 15px;
+    max-width: 50%;
+}
+
+.home .informacoes h1 {
+    font-family: "Raleway", sans-serif;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.home .redes-sociais {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.home .redes-sociais a i {
+    border: 1px solid #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 10px;  
+    text-align: center;
+    font-size: 26px;
+    transition: 0.3s;
+}
+
+.home .redes-sociais a:hover {
+    color: #67ADC3;
+}
+
+.home .container-foto .foto {
+    max-width: 450px;
+    border-radius: 50%;
+    overflow: hidden;  
+}
+
+.home .container-foto img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.home .foto.sombra-interna {
+    background: linear-gradient(to right, #4c4b4e, #FFF, #091642);
+}
+
+/* Estilos específicos para a página "Sobre mim" */
+.sobre-mim .container-foto {
+    margin-left: 110px; /* Ajuste conforme necessário */
+    float: right; /* Ajusta a imagem para a direita */
+}
+
+.sobre-mim .informacoes h1 {
+    white-space: nowrap; /* Impede a quebra de linha para que o h1 ocupe apenas uma linha */
+    text-overflow: ellipsis; /* Adiciona reticências (...) para indicar que o texto foi cortado */
+}
+
+.sobre-mim .informacoes h2 {
+    max-height: 5.6em; /* Define a altura máxima em 2 linhas, considerando a altura do texto e da linha */
+    overflow: hidden; /* Oculta qualquer conteúdo que não caiba na altura especificada */
+}
+
+
+
+.projetos .container-projetos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.projetos .projeto {
+    flex: 1;
+    max-width: 260px;
+    max-height: 500px;
+    position: relative;
+}
+
+.projetos .projeto img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.projetos .projeto .informacoes {
+    background-color: rgb(0, 100, 0);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-weight: 600;
+    opacity: 0;
+    transition: 0.3s;
+    padding: 20px;
+    border-radius: 0 0 15px 15px;
+    text-align: center;
+    z-index: 1;
+}
+
+.projetos .projeto:hover .informacoes {
+    opacity: 0.7;
+    background-color: #000;
+}
+
+.projetos .btn-mostrar-projetos:hover {
+    background-color: #9443d8;
+    transition: 0.3s;
+}
+
+.projetos .btn-mostrar-projetos.remover {
+    display: none;
+}
