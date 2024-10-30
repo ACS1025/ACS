@@ -152,6 +152,18 @@ body {
     background: linear-gradient(to right, #4c4b4e, #FFF, #091642);
 }
 
+.informacoes a {
+    color: #f8fafc; /* Cor inicial do link */
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.informacoes a:hover {
+    color: #f7eb43; /* Cor no hover */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Efeito de brilho */
+}
+
 /* Estilos específicos para a página "Sobre mim" */
 .sobre-mim .container-foto {
     margin-left: 110px; /* Ajuste conforme necessário */
