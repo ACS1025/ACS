@@ -4,14 +4,13 @@ html {
 }
 
 body {
-    background-image: url('../imagens/ACS\ 0.1.svg');
+    background-image: url('../imagens/ACS 0.1.svg'); /* Removido o caractere de escape */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
-    margin: 0 auto;
     max-width: 1290px;
 }
 
@@ -28,7 +27,7 @@ body {
     border-radius: 50%;
     border: 2px solid #fff;
     text-align: center;
-    line-height: 75px;  
+    line-height: 75px;
     font-family: "Raleway", sans-serif;
     transition: 0.2s;
 }
@@ -39,45 +38,41 @@ body {
 }
 
 .header {
-    display: flex; /* torna o container flexível */
-    align-items: center; /* alinha verticalmente os itens ao centro */
-    background: #FFF; /* cor de fundo do cabeçalho, caso necessário */
-}
-
-.logo {
-    margin-right: 20px; /* espaço à direita do logo para separá-lo do menu */
+    display: flex;
+    align-items: center;
+    background: #FFF;
 }
 
 .menu {
-    display: flex; /* torna o menu um flex container */
-    justify-content: flex-end; /* justifica os itens do menu à direita */
+    display: flex;
+    justify-content: flex-end;
     background: linear-gradient(to right, #808080, #FFF, #0f2747);
-    padding: 10px 0; /* espaço interno para dar destaque ao menu */
-    flex-grow: 1; /* faz o menu crescer para ocupar o espaço restante */
+    padding: 10px 0;
+    flex-grow: 1;
 }
 
 .menu ul {
-    list-style-type: none; /* remove os marcadores de lista */
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex; /* torna os itens da lista em linha */
-    justify-content: center; /* centraliza os itens horizontalmente */
+    display: flex;
+    justify-content: center;
 }
 
 .menu li {
-    margin: 0 15px; /* espaço entre os itens do menu */
+    margin: 0 15px;
 }
 
 .menu a {
-    text-decoration: none; /* remove sublinhado dos links */
-    color: #000; /* cor do texto */
-    padding: 5px 10px; /* espaço interno para tornar o link clicável */
-    border-radius: 5px; /* bordas arredondadas */
-    transition: background-color 0.3s ease; /* transição suave de cor de fundo */
+    text-decoration: none;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .menu a:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* cor de fundo ao passar o mouse */
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .cabecalho .menu li a {
@@ -127,7 +122,7 @@ body {
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    padding: 10px;  
+    padding: 10px;
     text-align: center;
     font-size: 26px;
     transition: 0.3s;
@@ -140,7 +135,7 @@ body {
 .home .container-foto .foto {
     max-width: 450px;
     border-radius: 50%;
-    overflow: hidden;  
+    overflow: hidden;
 }
 
 .home .container-foto img {
@@ -165,38 +160,34 @@ body {
 /* Aplica a rotação à classe rotacao-continua */
 .rotacao-continua {
     animation: rotacao 10s linear infinite;
-    /* 10s para um giro completo. Ajuste para mais rápido ou mais lento, se preferir */
 }
 
 .informacoes a {
-    color: #f8fafc; /* Cor inicial do link */
+    color: #f8fafc;
     text-decoration: none;
     transition: 0.3s ease-in-out;
     font-weight: bold;
 }
 
 .informacoes a:hover {
-    color: #f7eb43; /* Cor no hover */
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Efeito de brilho */
+    color: #f7eb43;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
-/* Estilos específicos para a página "Sobre mim" */
 .sobre-mim .container-foto {
-    margin-left: 110px; /* Ajuste conforme necessário */
-    float: right; /* Ajusta a imagem para a direita */
+    margin-left: 110px;
+    float: right;
 }
 
 .sobre-mim .informacoes h1 {
-    white-space: nowrap; /* Impede a quebra de linha para que o h1 ocupe apenas uma linha */
-    text-overflow: ellipsis; /* Adiciona reticências (...) para indicar que o texto foi cortado */
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .sobre-mim .informacoes h2 {
-    max-height: 5.6em; /* Define a altura máxima em 2 linhas, considerando a altura do texto e da linha */
-    overflow: hidden; /* Oculta qualquer conteúdo que não caiba na altura especificada */
+    max-height: 5.6em;
+    overflow: hidden;
 }
-
-
 
 .projetos .container-projetos {
     display: flex;
@@ -247,4 +238,3 @@ body {
 .projetos .btn-mostrar-projetos.remover {
     display: none;
 }
-
