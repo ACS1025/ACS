@@ -152,6 +152,22 @@ body {
     background: linear-gradient(to right, #4c4b4e, #FFF, #091642);
 }
 
+/* Define o efeito de rotação contínua */
+@keyframes rotacao {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Aplica a rotação à classe rotacao-continua */
+.rotacao-continua {
+    animation: rotacao 10s linear infinite;
+    /* 10s para um giro completo. Ajuste para mais rápido ou mais lento, se preferir */
+}
+
 .informacoes a {
     color: #f8fafc; /* Cor inicial do link */
     text-decoration: none;
@@ -231,3 +247,4 @@ body {
 .projetos .btn-mostrar-projetos.remover {
     display: none;
 }
+
