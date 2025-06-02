@@ -1,0 +1,62 @@
+[
+  {
+    "nome": "Supersonic",
+    "cidade": "Campinas",
+    "estado": "SP",
+    "latitude": -22.90556,
+    "longitude": -47.06083,
+    "logo": "src/Supersonic-transparent-2.png",
+    "links": [
+      {
+        "nome": "Site",
+        "url": "https://acs1025.github.io/PA_Campinas/index.html"
+      },
+      {
+        "nome": "Painel",
+        "url": "https://sites.google.com/view/pacampinas/dados-mensal"
+      }
+    ]
+  },
+  {
+    "nome": "KMD",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "latitude": -23.55052,
+    "longitude": -46.63331,
+    "logo": "src/Kmd_N.png",
+    "links": [
+      {
+        "nome": "Site",
+        "url": "https://www.kmd.com.br"
+      }
+    ]
+  },
+  {
+    "nome": "Cliente XYZ",
+    "cidade": "Rio de Janeiro",
+    "estado": "RJ",
+    "latitude": -22.9068,
+    "longitude": -43.1729,
+    "logo": "src/cliente_xyz.png",
+    "links": [
+      {
+        "nome": "Site",
+        "url": "https://cliente-xyz.com"
+      }
+    ]
+  },
+  {
+    "nome": "Cliente ABC",
+    "cidade": "Belo Horizonte",
+    "estado": "MG",
+    "latitude": -19.9167,
+    "longitude": -43.9345,
+    "logo": "src/cliente_abc.png",
+    "links": [
+      {
+        "nome": "Site",
+        "url": "https://cliente-abc.com"
+      }
+    ]
+  }
+]
