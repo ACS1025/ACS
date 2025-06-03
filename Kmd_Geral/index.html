@@ -1,361 +1,141 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Mapa de Clientes com Lista e Filtros</title>
+  <meta charset="UTF-8">
+  <title>Mapa de Clientes</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
-    body, html {
-      margin: 0; padding: 0; height: 100%;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
+    body { margin: 0; font-family: sans-serif; }
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 60px;
-      background: #007bff;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      font-weight: bold;
-      font-size: 20px;
+      background: #007bff; color: white; padding: 10px;
+      display: flex; justify-content: space-between; align-items: center;
     }
-
-    main {
-      display: flex;
-      height: calc(100% - 60px);
-      margin-top: 60px;
+    #container { display: flex; height: 100vh; }
+    #sidebar { width: 250px; overflow-y: auto; border-right: 1px solid #ccc; padding: 10px; }
+    #map { flex: 1; height: 100%; }
+    .btn-group { margin: 10px 0; display: flex; flex-wrap: wrap; gap: 5px; }
+    .btn {
+      padding: 5px 10px; cursor: pointer;
+      background: #007bff; color: white; border: none; border-radius: 5px;
     }
+    .cliente { border-bottom: 1px solid #ccc; padding: 5px 0; }
+    .cliente:hover { background: #f0f0f0; cursor: pointer; }
 
-    .sidebar {
-      width: 320px;
-      background: #fff;
-      border-right: 1px solid #ccc;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .filtros {
-      padding: 10px 15px;
-      border-bottom: 1px solid #ddd;
-      background: #f9f9f9;
-      font-weight: bold;
-      color: #007bff;
-    }
-
-    .filtros button {
-      margin-right: 10px;
-      padding: 5px 12px;
-      border: none;
-      background: #007bff;
-      color: white;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .filtros button.active {
-      background: #0056b3;
-    }
-
-    #lista-clientes {
-      flex-grow: 1;
-      overflow-y: auto;
-      padding: 10px 15px;
-    }
-
-    .cliente-lista {
-      margin-bottom: 15px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
-      cursor: pointer;
-    }
-
-    .cliente-lista strong {
-      display: block;
-      font-size: 14px;
-      color: #000;
-    }
-
-    .cliente-lista small {
-      color: #555;
-    }
-
-    .conteudo {
-      flex-grow: 1;
-      position: relative;
-      padding: 20px;
-      background: #f5f5f5;
-      overflow: hidden;
-    }
-
-    .mapa {
-      position: relative;
-      width: 1000px;
-      height: 1200px;
-      background: url('mapa-brasil.svg') no-repeat right center;
-      background-size: contain;
-      border: 1px solid #ccc;
-      margin-left: auto; /* para ficar encostado à direita */
-    }
-
-    .empresa {
-      position: absolute;
-      top: 620px;
-      left: 480px;
-      width: 80px;
-      height: 80px;
-      background: url('src/Kmd_N.png') no-repeat center center;
-      background-size: cover;
+    /* Estilo visual para ícones destacados */
+    .leaflet-destaque img {
+      border: 3px solid gold;
       border-radius: 50%;
-      border: 3px solid #007bff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-
-    .pin {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #007bff;
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg);
-      cursor: pointer;
-      box-shadow: 0 0 5px rgba(0,123,255,0.7);
-      transition: box-shadow 0.2s ease;
-    }
-
-    .pin:hover {
-      box-shadow: 0 0 10px 3px rgba(0,123,255,0.9);
-    }
-
-    .tooltip {
-      position: absolute;
-      min-width: 180px;
-      background: white;
-      border: 1px solid #007bff;
-      border-radius: 8px;
-      padding: 8px;
-      box-shadow: 0 0 10px rgba(0,123,255,0.3);
-      color: #000;
-      font-size: 12px;
-      pointer-events: auto;
-      display: none;
-      z-index: 10;
-    }
-
-    .tooltip.visible {
-      display: block;
-    }
-
-    .tooltip img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      margin-bottom: 6px;
-    }
-
-    .tooltip ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .tooltip ul li {
-      margin-bottom: 4px;
-    }
-
-    .tooltip a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    .tooltip a:hover {
-      text-decoration: underline;
+      box-shadow: 0 0 12px 4px rgba(255, 215, 0, 0.6);
     }
   </style>
 </head>
 <body>
-
   <header>
-    Mapa de Clientes
-    <button id="acao-btn" style="margin-left:auto; padding: 6px 12px; background:#0056b3; border:none; color:#fff; border-radius:4px; cursor:pointer;">Botão de Ação</button>
+    <span>Mapa de Clientes</span>
+    <button id="resetViewBtn" class="btn">Resetar Visualização</button>
   </header>
-
-  <main>
-    <div class="sidebar">
-      <div class="filtros" id="filtros-estados">
-        <button data-estado="ALL" class="active">Todos</button>
-        <!-- Botões por estado serão gerados aqui -->
+  <div id="container">
+    <div id="sidebar">
+      <div class="btn-group" id="filtros">
+        <button class="btn" data-estado="Todos">Todos</button>
+        <button class="btn" data-estado="SP">SP</button>
+        <button class="btn" data-estado="RJ">RJ</button>
+        <button class="btn" data-estado="MG">MG</button>
       </div>
       <div id="lista-clientes"></div>
     </div>
+    <div id="map"></div>
+  </div>
 
-    <div class="conteudo">
-      <div class="mapa" id="mapa">
-        <div class="empresa" title="Kund Geral"></div>
-        <div class="tooltip" id="tooltip"></div>
-      </div>
-    </div>
-  </main>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    let map = L.map('map').setView([-15.78, -47.93], 4);
+    let clientes = [];
+    let markers = [];
 
-<script>
-  async function carregarClientes() {
-    const response = await fetch('clientes.json');
-    const clientes = await response.json();
+    const brasilView = {
+      center: [-15.78, -47.93],
+      zoom: 4
+    };
 
-    const mapa = document.getElementById('mapa');
-    const tooltip = document.getElementById('tooltip');
-    const lista = document.getElementById('lista-clientes');
-    const filtrosContainer = document.getElementById('filtros-estados');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
 
-    let tooltipFixado = false;
-    let pins = [];
-    let estadosUnicos = new Set();
+    document.getElementById('resetViewBtn').onclick = () => {
+      map.setView(brasilView.center, brasilView.zoom);
+    };
 
-    // Coordenadas geográficas limites do mapa (Brasil)
-    const latMax = -4;    // norte
-    const latMin = -34;   // sul
-    const lonMin = -74;   // oeste
-    const lonMax = -34;   // leste
+    async function carregarClientes() {
+      const res = await fetch('clientes.json');
+      const data = await res.json();
 
-    function converterGeoParaPixel(lat, lon, mapa) {
-      const x = ((lon - lonMin) / (lonMax - lonMin)) * mapa.clientWidth;
-      const y = ((latMax - lat) / (latMax - latMin)) * mapa.clientHeight;
-      return { x, y };
-    }
-
-    // Limpar antigos
-    mapa.querySelectorAll('.pin').forEach(pin => pin.remove());
-    lista.innerHTML = '';
-    filtrosContainer.querySelectorAll('button:not([data-estado="ALL"])').forEach(b => b.remove());
-
-    // Criar botão por estado único
-    clientes.forEach(c => estadosUnicos.add(c.estado));
-    estadosUnicos = Array.from(estadosUnicos).sort();
-    estadosUnicos.forEach(estado => {
-      const btn = document.createElement('button');
-      btn.textContent = estado;
-      btn.dataset.estado = estado;
-      filtrosContainer.appendChild(btn);
-    });
-
-    // Função para criar pin e lista conforme filtro
-    function criarItens(filtroEstado = "ALL") {
-      // limpar lista e pins
-      lista.innerHTML = '';
-      mapa.querySelectorAll('.pin').forEach(p => p.remove());
-      pins = [];
-
-      const filtrados = filtroEstado === "ALL"
-        ? clientes
-        : clientes.filter(c => c.estado === filtroEstado);
-
-      filtrados.forEach(cliente => {
-        // Pin
-        const { x, y } = converterGeoParaPixel(cliente.latitude, cliente.longitude, mapa);
-        const pin = document.createElement('div');
-        pin.className = 'pin';
-        pin.style.left = `${x}px`;
-        pin.style.top = `${y}px`;
-
-        pin.addEventListener('mouseenter', () => {
-          if (!tooltipFixado) mostrarTooltip(pin, cliente);
-        });
-
-        pin.addEventListener('mouseleave', () => {
-          if (!tooltipFixado) esconderTooltip();
-        });
-
-        pin.addEventListener('click', (e) => {
-          e.stopPropagation();
-          tooltipFixado = true;
-          mostrarTooltip(pin, cliente);
-        });
-
-        mapa.appendChild(pin);
-        pins.push(pin);
-
-        // Lista lateral
-        const item = document.createElement('div');
-        item.className = 'cliente-lista';
-        item.innerHTML = `
-          <strong>${cliente.nome}</strong>
-          <small>${cliente.cidade}/${cliente.estado}</small>
-        `;
-        item.addEventListener('click', () => {
-          // Centralizar tooltip no pin correspondente
-          tooltipFixado = true;
-          mostrarTooltip(pin, cliente);
-          // Scroll mapa para o pin (opcional)
-          // mapa.scrollTo(x, y);
-        });
-        lista.appendChild(item);
+      // Marcar destaque na empresa principal
+      data.forEach(c => {
+        if (c.nome === "Komando Gerenciamento de Riscos") {
+          c.destaque = true;
+        }
       });
+
+      clientes = data;
+      atualizarLista('Todos');
     }
 
-    function mostrarTooltip(pin, cliente) {
-      tooltip.innerHTML = `
-        <img src="${cliente.logo}" alt="Logo ${cliente.nome}">
-        <strong>${cliente.nome}</strong><br>
-        <small>${cliente.cidade}/${cliente.estado}</small>
-        <ul>
-          ${cliente.links.map(link => `<li><a href="${link.url}" target="_blank" rel="noopener">${link.nome}</a></li>`).join('')}
-        </ul>
-      `;
+    function atualizarLista(estado) {
+      const lista = document.getElementById('lista-clientes');
+      lista.innerHTML = '';
 
-      let top = pin.offsetTop - 110;
-      let left = pin.offsetLeft + 25;
+      // Remove marcadores anteriores
+      markers.forEach(m => map.removeLayer(m));
+      markers = [];
 
-      if (top < 0) top = pin.offsetTop + 25;
-      if (left + tooltip.offsetWidth > mapa.clientWidth) {
-        left = pin.offsetLeft - tooltip.offsetWidth - 10;
+      const filtrados = estado === 'Todos' ? clientes : clientes.filter(c => c.estado === estado);
+      let bounds = [];
+
+      filtrados.forEach(c => {
+        const item = document.createElement('div');
+        item.className = 'cliente';
+        item.innerHTML = `<strong>${c.nome}</strong><br>${c.cidade}/${c.estado}`;
+        item.onclick = () => {
+          map.setView([c.latitude, c.longitude], 10);
+        };
+        lista.appendChild(item);
+
+        const isDestaque = c.destaque === true;
+
+        const icon = L.icon({
+          iconUrl: c.logo,
+          iconSize: isDestaque ? [60, 60] : [40, 40],
+          iconAnchor: [isDestaque ? 30 : 20, isDestaque ? 60 : 40],
+          popupAnchor: [0, -40],
+          className: isDestaque ? 'leaflet-destaque' : ''
+        });
+
+        const marker = L.marker([c.latitude, c.longitude], { icon })
+          .addTo(map)
+          .bindPopup(`<b>${c.nome}</b><br>${c.cidade}/${c.estado}<br>
+            ${c.links?.map(l => `<a href="${l.url}" target="_blank">${l.nome}</a>`).join('<br>') || ''}
+          `);
+
+        markers.push(marker);
+        bounds.push([c.latitude, c.longitude]);
+      });
+
+      if (bounds.length > 0) {
+        map.fitBounds(bounds, { padding: [50, 50] });
+      } else {
+        map.setView(brasilView.center, brasilView.zoom);
       }
+}
 
-      tooltip.style.top = top + 'px';
-      tooltip.style.left = left + 'px';
-      tooltip.classList.add('visible');
-    }
-
-    function esconderTooltip() {
-      tooltip.classList.remove('visible');
-      tooltipFixado = false;
-    }
-
-    // Filtro botão click
-    filtrosContainer.addEventListener('click', (e) => {
-      if (e.target.tagName === 'BUTTON') {
-        const estado = e.target.dataset.estado;
-        filtrosContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        esconderTooltip();
-        criarItens(estado);
-      }
-    });
-
-    // Fecha tooltip ao clicar fora
-    document.addEventListener('click', (e) => {
-      if (!tooltip.contains(e.target)) {
-        esconderTooltip();
-      }
-    });
-
-    criarItens(); // Inicializa com todos
-
-    // Botão de ação exemplo
-    document.getElementById('acao-btn').addEventListener('click', () => {
-      alert('Botão de ação clicado!');
-    });
+document.getElementById('filtros').addEventListener('click', (e) => {
+  if (e.target.classList.contains('btn')) {
+    const estado = e.target.dataset.estado;
+    atualizarLista(estado);
   }
+});
 
-  carregarClientes();
-</script>
-
+    carregarClientes();
+  </script>
 </body>
 </html>
