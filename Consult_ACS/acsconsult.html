@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ACS Consult — Tecnologia & Inteligência em Dados</title>
+  <meta name="description" content="ACS Consult — desenvolvimento web, integrações, Power BI e consultoria em dados. Transformamos dados em decisões estratégicas." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230059b3'/><text x='50' y='60' font-size='46' font-family='Roboto' fill='white' text-anchor='middle'>A</text></svg>" />
+
+  <!-- Icons (remix) and fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (quick) -->
+  <script>
+    tailwind.config = { theme: { extend: { colors: { brand: { 50:'#f1f8ff',100:'#dbeffd',500:'#0059b3',700:'#004080' }, accent: '#ff7a59' } } } }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{--max-w:1100px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Roboto',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    .glass{background:rgba(255,255,255,0.6);backdrop-filter:blur(6px)}
+    /* simple accessible skip link */
+    .skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{position:static;width:auto;height:auto}
+    /* modal arrows */
+    .modal-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:white;cursor:pointer;padding:8px}
+  </style>
+
+  <!-- SEO / OpenGraph -->
+  <meta property="og:title" content="ACS Consult — Tecnologia & Inteligência em Dados" />
+  <meta property="og:description" content="Soluções em desenvolvimento web, Power BI, integrações e consultoria em dados." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=ACS+Consult" />
+</head>
+<body class="bg-gray-50 text-gray-800 leading-relaxed">
+  <a href="#main" class="skip">Pular para conteúdo</a>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/70 backdrop-blur border-b">
+    <div class="max-w-[var(--max-w)] mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <a href="#home" class="flex items-center gap-3" aria-label="ACS Consult - voltar ao início">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-brand-500 text-white font-bold shadow">A</div>
+        <div class="hidden sm:block">
+          <div class="text-lg font-extrabold text-brand-700">ACS Consult</div>
+          <div class="text-xs text-gray-500">Tecnologia • Inteligência • Dados</div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
+        <a href="#servicos" class="hover:text-brand-700">Serviços</a>
+        <a href="#portfolio" class="hover:text-brand-700">Portfólio</a>
+        <a href="#sobre" class="hover:text-brand-700">Sobre</a>
+        <a href="#contato" class="hover:text-brand-700">Contato</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2 rounded-md border hidden sm:inline" aria-label="Alternar tema">
+          <i class="ri-moon-line"></i>
+        </button>
+        <a href="https://wa.me/5511996232846?text=Ol%C3%A1%20Ana%21%20Quero%20um%20or%C3%A7amento" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-accent text-white px-4 py-2 rounded-md font-semibold"> 
+          <i class="ri-whatsapp-line"></i>
+          WhatsApp
+        </a>
+        <button id="menuBtn" class="md:hidden p-2 rounded-md border"><i class="ri-menu-line"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="home" class="max-w-[var(--max-w)] mx-auto px-4 py-16 grid lg:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-700 leading-tight">ACS Consult — transformamos dados em decisões estratégicas</h1>
+        <p class="mt-4 text-lg text-gray-700 max-w-xl">Desenvolvimento web, integrações, modelagem de dados, Power BI e consultoria estratégica com foco em resultado. Relatórios que contam histórias, dashboards que orientam ações.</p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://wa.me/5511996232846?text=Ol%C3%A1%20Ana%2C%20gostaria%20de%20um%20or%C3%A7amento" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-3 rounded-md font-semibold">WhatsApp</a>
+          <a href="#portfolio" class="inline-flex items-center gap-2 border border-brand-700 text-brand-700 px-5 py-3 rounded-md">Ver portfólio</a>
+        </div>
+
+        <div class="mt-6 grid grid-cols-3 gap-3 max-w-sm">
+          <div class="glass p-3 rounded-lg text-center">
+            <div class="text-xs text-gray-600">Clientes</div>
+            <div class="text-xl font-bold text-brand-700">+3</div>
+          </div>
+          <div class="glass p-3 rounded-lg text-center">
+            <div class="text-xs text-gray-600">Projetos</div>
+            <div class="text-xl font-bold text-brand-700">+10</div>
+          </div>
+          <div class="glass p-3 rounded-lg text-center">
+            <div class="text-xs text-gray-600">Experiência</div>
+            <div class="text-xl font-bold text-brand-700">8 anos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden lg:block relative">
+        <div class="rounded-2xl shadow-lg overflow-hidden">
+          <img src="assets/images/portfolio/MeTransp.png" alt="Mockup Me" class="w-full h-auto bg-transparent" />
+        </div>
+        <div class="absolute -right-8 -bottom-8 w-40 h-40 rounded-lg bg-accent/90 flex items-center justify-center text-white font-bold shadow">Analytics</div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="servicos" class="max-w-[var(--max-w)] mx-auto px-4 py-12">
+      <h2 class="text-2xl font-bold text-brand-700 mb-6">Serviços</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition transform hover:-translate-y-1">
+          <i class="ri-computer-line text-3xl text-brand-700 mb-4"></i>
+          <h3 class="text-lg font-semibold text-brand-700 mb-2">Desenvolvimento Web</h3>
+          <p class="text-sm text-gray-600">Sites responsivos, landing pages e aplicações com foco em performance e UX.</p>
+        </article>
+
+        <article class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition transform hover:-translate-y-1">
+          <i class="ri-database-2-line text-3xl text-brand-700 mb-4"></i>
+          <h3 class="text-lg font-semibold text-brand-700 mb-2">Back-end & Integrações</h3>
+          <p class="text-sm text-gray-600">APIs, ETL, pipelines e integração entre sistemas críticos.</p>
+        </article>
+
+        <article class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition transform hover:-translate-y-1">
+          <i class="ri-stack-line text-3xl text-brand-700 mb-4"></i>
+          <h3 class="text-lg font-semibold text-brand-700 mb-2">Power BI & Análise</h3>
+          <p class="text-sm text-gray-600">Modelagem, DAX, dashboards interativos e storytelling com dados.</p>
+        </article>
+
+        <article class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition transform hover:-translate-y-1">
+          <i class="ri-lightbulb-line text-3xl text-brand-700 mb-4"></i>
+          <h3 class="text-lg font-semibold text-brand-700 mb-2">Consultoria em Dados</h3>
+          <p class="text-sm text-gray-600">Governança, qualidade de dados e definição de KPIs para maturidade analítica.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="portfolio" class="max-w-[var(--max-w)] mx-auto px-4 py-12">
+  <h2 class="text-2xl font-bold text-brand-700 mb-4">Portfólio</h2>
+  <p class="text-sm text-gray-600 mb-6">Clique para ampliar — substitua as imagens em <code>assets/images/portfolio/</code></p>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+    <!-- CARD COM LINK DO POWER BI -->
+    <a href="https://app.powerbi.com/view?r=SEU_LINK_AQUI" target="_blank" 
+       class="bg-white rounded-2xl overflow-hidden shadow cursor-pointer block">
+      <img src="assets/images/portfolio/case1-powerbi.jpg" alt="Dashboard Power BI" class="w-full h-48 object-cover" />
+      <div class="p-4">
+        <div class="font-semibold text-brand-700">Dashboard Comercial — Power BI</div>
+        <div class="text-xs text-gray-500 mt-1">Modelagem, DAX e visualização para equipe comercial.</div>
+      </div>
+    </a>
+
+    <!-- OUTROS CARDS NORMAIS -->
+    <figure class="bg-white rounded-2xl overflow-hidden shadow cursor-pointer">
+      <img src="assets/images/portfolio/case2-site.jpg" alt="Website Institucional" class="w-full h-48 object-cover portfolio-item" data-index="1" />
+      <figcaption class="p-4">
+        <div class="font-semibold text-brand-700">Website Institucional</div>
+        <div class="text-xs text-gray-500 mt-1">Front-end moderno e performance otimizada.</div>
+      </figcaption>
+    </figure>
+
+    <figure class="bg-white rounded-2xl overflow-hidden shadow cursor-pointer">
+      <img src="assets/images/portfolio/case3-automacao.jpg" alt="Integrações e automação" class="w-full h-48 object-cover portfolio-item" data-index="2" />
+      <figcaption class="p-4">
+        <div class="font-semibold text-brand-700">Integração & Automação</div>
+        <div class="text-xs text-gray-500 mt-1">Pipelines e sincronização entre sistemas.</div>
+      </figcaption>
+    </figure>
+
+    <figure class="bg-white rounded-2xl overflow-hidden shadow cursor-pointer">
+      <img src="assets/images/portfolio/case4-consultoria.jpg" alt="Consultoria em Dados" class="w-full h-48 object-cover portfolio-item" data-index="3" />
+      <figcaption class="p-4">
+        <div class="font-semibold text-brand-700">Consultoria em Dados</div>
+        <div class="text-xs text-gray-500 mt-1">Governança e definição de KPIs.</div>
+      </figcaption>
+    </figure>
+
+  </div>
+</section>
+
+
+      </div>
+    </section>
+
+    <!-- Modal / Lightbox with navigation -->
+    <div id="lightbox" class="fixed inset-0 hidden z-50 items-center justify-center bg-black/80 p-4">
+      <button id="closeLightbox" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+      <button id="prev" class="modal-arrow left-4">&#10094;</button>
+      <div class="max-w-4xl w-full relative">
+        <img id="lightboxImg" src="" alt="" class="w-full h-auto rounded" />
+        <div id="lightboxCaption" class="mt-3 text-sm text-gray-200"></div>
+      </div>
+      <button id="next" class="modal-arrow right-4">&#10095;</button>
+    </div>
+
+    <!-- ABOUT / Sobre -->
+    <section id="sobre" class="max-w-[var(--max-w)] mx-auto px-4 py-12 grid lg:grid-cols-3 gap-6 items-start">
+      <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow">
+        <h2 class="text-2xl font-bold text-brand-700 mb-3">Sobre a ACS Consult</h2>
+        <p class="text-gray-700 mb-4">A ACS Consult entrega soluções digitais e analíticas para empresas que precisam transformar dados em ações. Atuamos em desenvolvimento web, integrações, modelagem de dados e Power BI — sempre com foco em resultado e comunicação clara.</p>
+        <ul class="grid sm:grid-cols-2 gap-2 text-sm text-gray-600">
+          <li>• Modelagem de dados e DAX avançado</li>
+          <li>• Dashboards e storytelling</li>
+          <li>• ETL e integrações de APIs</li>
+          <li>• Desenvolvimento web responsivo</li>
+          <li>• Governança e qualidade de dados</li>
+          <li>• Automação e pipelines</li>
+        </ul>
+      </div>
+
+      <aside class="bg-white p-6 rounded-2xl shadow text-center">
+        <img src="assets/images/avatar-ana.jpg" alt="Ana Cláudia" class="mx-auto w-36 h-36 object-cover rounded-full mb-4" />
+        <div class="font-semibold text-brand-700">Ana Cláudia</div>
+        <div class="text-sm text-gray-500 mb-4">Analista & Consultora de Dados</div>
+        <a href="https://linkedin.com/in/ana-claudia-acs" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-2 border rounded-md"> <i class="ri-linkedin-line"></i> LinkedIn</a>
+      </aside>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contato" class="max-w-[var(--max-w)] mx-auto px-4 py-12 grid lg:grid-cols-2 gap-8">
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4">Contato</h2>
+        <p class="text-gray-700 mb-4">Solicite um orçamento ou tire dúvidas. Resposta rápida por WhatsApp ou e-mail.</p>
+        <div class="space-y-3 text-sm text-gray-700">
+          <p><strong>Email:</strong> <a href="mailto:acs.consult25@gmail.com" class="text-brand-700 hover:underline">acs.consult25@gmail.com</a></p>
+          <p><strong>WhatsApp:</strong> <a href="https://wa.me/5511996232846" target="_blank" class="text-brand-700 hover:underline">(11) 99623-2846</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/ana-claudia-acs" target="_blank" class="text-brand-700 hover:underline">linkedin.com/in/ana-claudia-acs</a></p>
+        </div>
+        <div class="mt-6 flex gap-3">
+          <a href="https://wa.me/5511996232846?text=Ol%C3%A1%20Ana%2C%20gostaria%20de%20falar%20sobre%20um%20projeto" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-4 py-2 rounded-md">WhatsApp</a>
+          <a href="mailto:acs.consult25@gmail.com" class="inline-flex items-center gap-2 border px-4 py-2 rounded-md">Enviar email</a>
+        </div>
+      </div>
+
+      <form id="contactForm" class="bg-white p-6 rounded-2xl shadow space-y-4" action="https://formspree.io/f/mzzrlzop" method="POST">
+        <input type="hidden" name="form-name" value="contactForm">
+        <label class="block text-sm">Nome
+          <input name="nome" required class="w-full mt-1 px-3 py-2 border rounded-md" placeholder="Seu nome" />
+        </label>
+        <label class="block text-sm">Email
+          <input type="email" name="email" required class="w-full mt-1 px-3 py-2 border rounded-md" placeholder="seu@exemplo.com" />
+        </label>
+        <label class="block text-sm">Mensagem
+          <textarea name="mensagem" rows="4" required class="w-full mt-1 px-3 py-2 border rounded-md" placeholder="Como podemos ajudar?"></textarea>
+        </label>
+        <div class="flex items-center gap-3">
+          <button type="submit" class="bg-brand-700 text-white px-4 py-2 rounded-md">Enviar mensagem</button>
+          <div id="formStatus" class="text-sm text-gray-600"></div>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="mt-12 bg-white/90 border-t py-6">
+    <div class="max-w-[var(--max-w)] mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-gray-600">© 2025 ACS Consult. Todos os direitos reservados.</div>
+      <div class="flex gap-4">
+        <a href="#servicos" class="text-sm text-gray-600 hover:text-brand-700">Serviços</a>
+        <a href="#portfolio" class="text-sm text-gray-600 hover:text-brand-700">Portfólio</a>
+        <a href="#contato" class="text-sm text-gray-600 hover:text-brand-700">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSON-LD Organization -->
+  <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "Organization", "name": "ACS Consult", "url": "https://seusite.com", "logo": "https://seusite.com/favicon.ico", "contactPoint": [{"@type": "ContactPoint", "telephone": "+5511996232846", "contactType": "customer service", "areaServed": "BR"}] }
+  </script>
+
+  <!-- Scripts: menu, lightbox, form, theme -->
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    let menuOpen = false;
+    menuBtn?.addEventListener('click', () => {
+      if (!menuOpen) {
+        const nav = document.createElement('div');
+        nav.id = 'mobileNav';
+        nav.className = 'fixed inset-0 z-50 bg-white p-6';
+        nav.innerHTML = `<button id=closeMobile class="mb-4 text-xl">Fechar ✕</button><nav class='flex flex-col gap-3'><a href='#servicos' class='text-lg'>Serviços</a><a href='#portfolio' class='text-lg'>Portfólio</a><a href='#sobre' class='text-lg'>Sobre</a><a href='#contato' class='text-lg'>Contato</a></nav>`;
+        document.body.appendChild(nav);
+        document.getElementById('closeMobile').addEventListener('click', () => { document.getElementById('mobileNav').remove(); menuOpen = false; });
+        menuOpen = true;
+      }
+    });
+
+    // Lightbox
+    const items = Array.from(document.querySelectorAll('.portfolio-item'));
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let currentIndex = 0;
+
+    function openLightbox(index){
+      const el = items[index];
+      lightboxImg.src = el.src;
+      lightboxImg.alt = el.alt;
+      lightboxCaption.textContent = el.closest('figure')?.querySelector('figcaption > div')?.textContent || '';
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      currentIndex = index;
+    }
+
+    items.forEach((img, idx) => img.addEventListener('click', () => openLightbox(idx)));
+    closeLightbox.addEventListener('click', () => { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); });
+
+    prev.addEventListener('click', () => { openLightbox((currentIndex - 1 + items.length) % items.length); });
+    next.addEventListener('click', () => { openLightbox((currentIndex + 1) % items.length); });
+
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); } });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('hidden')){
+        if (e.key === 'Escape') { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); }
+        if (e.key === 'ArrowRight') next.click();
+        if (e.key === 'ArrowLeft') prev.click();
+      }
+    });
+
+    // Formspree AJAX submit
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Enviando...';
+      const data = new FormData(form);
+      try{
+        const res = await fetch(form.action, { method: form.method, body: data, headers: { 'Accept':'application/json' } });
+        if (res.ok){ status.textContent = 'Mensagem enviada com sucesso!'; form.reset(); }
+        else { const d = await res.json(); status.textContent = d?.error || 'Erro ao enviar.'; }
+      }catch(err){ status.textContent = 'Erro de rede.'; }
+    });
+
+    // Theme toggle (light / dark)
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(t){ document.documentElement.classList.remove('dark'); if(t==='dark') document.documentElement.classList.add('dark'); localStorage.theme = t; }
+    themeToggle?.addEventListener('click', () => { setTheme(localStorage.theme==='dark' ? 'light' : 'dark'); });
+    if(localStorage.theme==='dark') setTheme('dark');
+  </script>
+
+  <style>
+    /* minimal dark mode using Tailwind's dark class */
+    .dark body { background: #0b1220; color: #cbd5e1 }
+  </style>
+</body>
+</html>
