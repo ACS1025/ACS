@@ -10,9 +10,6 @@
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230059b3'/><text x='50' y='60' font-size='46' font-family='Roboto' fill='white' text-anchor='middle'>A</text></svg>" />
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
-
-
   <!-- Icons (remix) and fonts -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -31,7 +28,7 @@
     /* simple accessible skip link */
     .skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
     .skip:focus{position:static;width:auto;height:auto}
-    /* modal arrows */
+    /* modal arrows (kept for compatibility if you want to style later) */
     .modal-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:white;cursor:pointer;padding:8px}
   </style>
 
@@ -157,7 +154,7 @@
           Dashboard estratégico para gestão de clientes e análise de dados.  
           Desenvolvido para apoiar decisões com visualização clara e insights em tempo real.
         </p>
-        <a href="Kmd_Geral/mapadeclientes.html"
+        <a href="https://acs1025.github.io/Komando_Geral/"
            class="inline-block mt-3 text-sm bg-brand-700 text-white px-4 py-2 rounded-md hover:bg-brand-800 transition">
           Ver Projeto
         </a>
@@ -213,17 +210,6 @@
 
       </div>
     </section>
-
-    <!-- Modal / Lightbox with navigation -->
-    <div id="lightbox" class="fixed inset-0 hidden z-50 items-center justify-center bg-black/80 p-4">
-      <button id="closeLightbox" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
-      <button id="prev" class="modal-arrow left-4">&#10094;</button>
-      <div class="max-w-4xl w-full relative">
-        <img id="lightboxImg" src="" alt="" class="w-full h-auto rounded" />
-        <div id="lightboxCaption" class="mt-3 text-sm text-gray-200"></div>
-      </div>
-      <button id="next" class="modal-arrow right-4">&#10095;</button>
-    </div>
 
     <!-- ABOUT / Sobre -->
     <section id="sobre" class="max-w-[var(--max-w)] mx-auto px-4 py-12 grid lg:grid-cols-3 gap-6 items-start">
@@ -300,7 +286,7 @@
     { "@context": "https://schema.org", "@type": "Organization", "name": "ACS Consult", "url": "https://seusite.com", "logo": "https://seusite.com/favicon.ico", "contactPoint": [{"@type": "ContactPoint", "telephone": "+5511996232846", "contactType": "customer service", "areaServed": "BR"}] }
   </script>
 
-  <!-- Scripts: menu, lightbox, form, theme -->
+  <!-- Scripts: menu, custom lightbox, form, theme -->
   <script>
     // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
@@ -317,39 +303,81 @@
       }
     });
 
-    // Lightbox
-    const items = Array.from(document.querySelectorAll('.portfolio-item'));
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-    const closeLightbox = document.getElementById('closeLightbox');
-    const prev = document.getElementById('prev');
-    const next = document.getElementById('next');
-    let currentIndex = 0;
+    // Custom Lightbox (dynamically creates a modal and handles open/close + zoom animation)
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightboxLinks = document.querySelectorAll("[data-lightbox]");
 
-    function openLightbox(index){
-      const el = items[index];
-      lightboxImg.src = el.src;
-      lightboxImg.alt = el.alt;
-      lightboxCaption.textContent = el.closest('figure')?.querySelector('figcaption > div')?.textContent || '';
-      lightbox.classList.remove('hidden');
-      lightbox.classList.add('flex');
-      currentIndex = index;
-    }
+      if (!lightboxLinks.length) return; // nothing to do
 
-    items.forEach((img, idx) => img.addEventListener('click', () => openLightbox(idx)));
-    closeLightbox.addEventListener('click', () => { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); });
+      // create container
+      const lightbox = document.createElement("div");
+      lightbox.id = "lightbox";
+      lightbox.className = `
+        fixed inset-0 bg-black/80 flex flex-col items-center justify-center 
+        opacity-0 pointer-events-none transition-opacity duration-300 z-50 p-4
+      `;
 
-    prev.addEventListener('click', () => { openLightbox((currentIndex - 1 + items.length) % items.length); });
-    next.addEventListener('click', () => { openLightbox((currentIndex + 1) % items.length); });
+      // close button
+      const closeBtn = document.createElement("button");
+      closeBtn.innerHTML = "&times;";
+      closeBtn.className = `
+        absolute top-4 right-6 text-white text-4xl font-bold 
+        hover:text-gray-300 transition
+      `;
 
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); } });
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('hidden')){
-        if (e.key === 'Escape') { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); }
-        if (e.key === 'ArrowRight') next.click();
-        if (e.key === 'ArrowLeft') prev.click();
+      // wrapper for image + caption (so we can animate scale)
+      const imgWrapper = document.createElement("div");
+      imgWrapper.className = `
+        transform scale-95 opacity-0 transition duration-300 ease-out
+      `;
+
+      const img = document.createElement("img");
+      img.className = "max-h-[80vh] max-w-[90vw] rounded-lg shadow-lg";
+
+      const caption = document.createElement("p");
+      caption.className = "text-white text-sm mt-4 max-w-[80vw] text-center";
+
+      imgWrapper.appendChild(img);
+      imgWrapper.appendChild(caption);
+      lightbox.appendChild(closeBtn);
+      lightbox.appendChild(imgWrapper);
+      document.body.appendChild(lightbox);
+
+      function openLightbox(src, title) {
+        img.src = src;
+        caption.textContent = title || "";
+
+        lightbox.classList.remove("pointer-events-none", "opacity-0");
+        lightbox.classList.add("opacity-100");
+
+        // force reflow for animation
+        void imgWrapper.offsetWidth;
+        imgWrapper.classList.remove("scale-95", "opacity-0");
+        imgWrapper.classList.add("scale-100", "opacity-100");
       }
+
+      function closeLightbox() {
+        lightbox.classList.remove("opacity-100");
+        lightbox.classList.add("opacity-0", "pointer-events-none");
+
+        imgWrapper.classList.remove("scale-100", "opacity-100");
+        imgWrapper.classList.add("scale-95", "opacity-0");
+      }
+
+      lightboxLinks.forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          openLightbox(link.href, link.dataset.title);
+        });
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", e => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") closeLightbox();
+      });
     });
 
     // Formspree AJAX submit
@@ -372,8 +400,6 @@
     themeToggle?.addEventListener('click', () => { setTheme(localStorage.theme==='dark' ? 'light' : 'dark'); });
     if(localStorage.theme==='dark') setTheme('dark');
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-
 
   <style>
     /* minimal dark mode using Tailwind's dark class */
