@@ -5,10 +5,214 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard - Centro de Controle de Operações</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/x-icon" href="img/logoazul.ico" />
+<style>
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #e3f2fd 0%, #bbdefb 100%);
+  min-height: 100vh;
+}
+
+nav {
+  background: #1976d2;
+  padding: 16px 0;
+  text-align: center;
+  position: relative;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 18px;
+  font-weight: 500;
+  font-size: 17px;
+  transition: color 0.2s;
+}
+nav a:hover {
+  color: #90caf9;
+}
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 16px;
+  margin-top: 2px;
+}
+@media (max-width: 700px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #1976d2;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(25,118,210,0.15);
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: inline-block;
+    position: absolute;
+    left: 16px;
+    top: 12px;
+  }
+  nav {
+    padding: 16px 0 0 0;
+  }
+}
+
+section.dashboard {
+  margin: 0 auto;
+  padding: 40px 0 0 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 18px;
+  max-width: 1400px;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  width: 100%;
+  padding: 0 32px;
+  margin: 40px 0 0 0;
+}
+
+.card {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 32px 18px 24px 18px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(25,118,210,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.5s;
+  background: linear-gradient(180deg, #e3f2fd 0%, #90caf9 100%);
+  position: relative;
+}
+.card h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1976d2;
+}
+.card .number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: #fff;
+}
+.card .icon {
+  font-size: 2.2rem;
+  margin-top: 8px;
+  color: #fff;
+}
+.card[data-tooltip]:hover:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1976d2;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 13px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(25,118,210,0.15);
+}
+
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #1976d2;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 30px auto;
+  display: none;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+#last-update {
+  text-align: right;
+  font-size: 13px;
+  color: #666;
+  margin: 18px 32px 0 0;
+}
+
+footer {
+  background: #1976d2;
+  color: #fff;
+  text-align: center;
+  padding: 18px 0;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 -2px 8px rgba(25,118,210,0.08);
+  border-radius: 0 0 18px 18px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  section.dashboard {
+    padding: 32px 0 0 0;
+    max-width: 98vw;
+  }
+  .dashboard-cards {
+    padding: 0 8px;
+    gap: 18px;
+  }
+  #last-update {
+    margin-right: 8px;
+  }
+}
+@media (max-width: 600px) {
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 0 4px;
+  }
+  section.dashboard {
+    padding: 18px 0 0 0;
+    border-radius: 0;
+  }
+  footer {
+    border-radius: 0;
+    margin-top: 24px;
+    padding: 12px 0;
+    position: relative;
+  }
+}
+.espaco {
+  display: block;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+</style>
 </head>
 <body>
 
 <nav>
+  <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+  <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="dashboard.html">Dashboard</a>
     <a href="metricas.html">Métricas</a>
@@ -16,35 +220,91 @@
     <a href="comunicacao.html">Comunicação</a>
     <a href="planejamento.html">Planejamento</a>
     <a href="seguranca.html">Segurança</a>
+  </div>
 </nav>
 
 <section id="dashboard" class="dashboard">
     <h2>Monitoramento em Tempo Real</h2>
     <p>Nesta seção, o Centro de Controle de Operações exibe um dashboard de controle completo que integra dados críticos em tempo real. Os painéis são projetados para fornecer uma visão clara e imediata do estado das operações, permitindo decisões rápidas e eficazes.</p>
 
+    <div id="loader" class="loader"></div>
     <div class="dashboard-cards">
-        <div class="card"><h3>Novos Clientes</h3><p class="number">125</p><span class="icon">👥</span></div>
-        <div class="card"><h3>Rastreamentos Ativos</h3><p class="number">78</p><span class="icon">📍</span></div>
-        <div class="card"><h3>C. Motoristas</h3><p class="number">42</p><span class="icon">🚚</span></div>
-        <div class="card"><h3>C. Veículos</h3><p class="number">34</p><span class="icon">🚗</span></div>
+        <div class="card" data-tooltip="Clientes cadastrados recentemente"><h3>Novos Clientes</h3><p class="number">...</p><span class="icon">👥</span></div>
+        <div class="card" data-tooltip="Rastreamentos ativos no sistema"><h3>Rastreamentos Ativos</h3><p class="number">...</p><span class="icon">📍</span></div>
+        <div class="card" data-tooltip="Motoristas cadastrados"><h3>C. Motoristas</h3><p class="number">...</p><span class="icon">🚚</span></div>
+        <div class="card" data-tooltip="Veículos cadastrados"><h3>C. Veículos</h3><p class="number">...</p><span class="icon">🚗</span></div>
     </div>
+    <div id="last-update"></div>
 
-    <img src="images/dashboard.jpg" alt="Dashboard de Controle">
-    <p>Painéis de controle exibindo dados e indicadores em tempo real, mapas dinâmicos, status de sistemas e notificações automáticas.</p>
-
-    <ul>
-        <li><strong>Indicadores em Tempo Real:</strong> Dados atualizados continuamente para garantir precisão.</li>
-        <li><strong>Mapas Dinâmicos:</strong> Visualização geográfica das operações e ativos.</li>
-        <li><strong>Status de Sistemas:</strong> Monitoração contínua para garantir desempenho ótimo.</li>
-        <li><strong>Notificações Automáticas:</strong> Alertas imediatos em caso de falhas ou eventos críticos.</li>
-    </ul>
-
-    <p>Este dashboard é a espinha dorsal do CCO, permitindo que operadores e gestores tenham total visibilidade das operações em um único painel integrado.</p>
+    <p class="espaco">Este dashboard é a espinha dorsal do CCO, permitindo que operadores e gestores tenham total visibilidade das operações em um único painel integrado.</p>
 </section>
 
 <footer>
     <p>&copy; 2025 Centro de Controle de Operações. Todos os direitos reservados.</p>
 </footer>
+<script>
+function animateValue(element, start, end, duration) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    element.innerText = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    } else {
+      element.innerText = end;
+    }
+  };
+  window.requestAnimationFrame(step);
+}
 
+const loader = document.getElementById('loader');
+const updateInfo = document.getElementById('last-update');
+const cards = document.querySelectorAll('.card .number');
+const cardsWrapper = document.querySelectorAll('.card');
+
+function carregarDados() {
+  loader.style.display = 'block';
+  updateInfo.innerHTML = "";
+  cards.forEach(card => card.innerText = '...');
+
+  fetch(`https://script.google.com/macros/s/AKfycbxabu5rCUqqrvzYETxOa5-aiIDFqiWpliCSbz4qIXAwUKcQza675Wi7Z9sA4o94kMLcbg/exec?t=${new Date().getTime()}`)
+    .then(response => response.json())
+    .then(data => {
+      animateValue(cards[0], 0, data.novosClientes, 1200);
+      animateValue(cards[1], 0, data.rastreamentosAtivos, 1200);
+      animateValue(cards[2], 0, data.cMotoristas, 1200);
+      animateValue(cards[3], 0, data.cVeiculos, 1200);
+
+      cardsWrapper.forEach(card => {
+        card.style.transition = "box-shadow 0.5s ease";
+        card.style.boxShadow = "0 0 20px rgba(25,118,210,0.6)";
+        setTimeout(() => { card.style.boxShadow = "none"; }, 1500);
+      });
+
+      const now = new Date();
+      updateInfo.innerText = `Última atualização: ${now.toLocaleString('pt-BR')}`;
+      loader.style.display = 'none';
+    })
+    .catch(err => {
+      loader.style.display = 'none';
+      updateInfo.innerHTML = `
+        <span style="color:#d32f2f; font-weight:bold;">⚠️ Não foi possível atualizar os dados.</span>
+        <button id="retry-btn" style="margin-left:12px; padding:4px 12px; border-radius:5px; border:none; background:#1976d2; color:#fff; cursor:pointer;">Tentar novamente</button>
+      `;
+      document.getElementById('retry-btn').onclick = carregarDados;
+      console.error("Erro ao carregar dados:", err);
+    });
+}
+
+carregarDados();
+setInterval(carregarDados, 60000);
+
+document.querySelector('.menu-toggle').onclick = function() {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.toggle('active');
+  this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+};
+</script>
 </body>
 </html>

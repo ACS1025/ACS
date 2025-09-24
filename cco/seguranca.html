@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Segurança - Centro de Controle de Operações</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/x-icon" href="img/logoazul.ico" />
 </head>
 <body>
 
 <nav>
+  <button class="menu-toggle" aria-label="Abrir menu">&#9776;</button>
+  <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="dashboard.html">Dashboard</a>
     <a href="metricas.html">Métricas</a>
@@ -16,6 +19,7 @@
     <a href="comunicacao.html">Comunicação</a>
     <a href="planejamento.html">Planejamento</a>
     <a href="seguranca.html">Segurança</a>
+  </div>
 </nav>
 
 <section id="seguranca" class="seguranca">
@@ -28,4 +32,10 @@
 </footer>
 
 </body>
+<script>
+// ...existing code...
+document.querySelector('.menu-toggle').onclick = function() {
+  document.querySelector('.nav-links').classList.toggle('active');
+};
+</script>
 </html>
